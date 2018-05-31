@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@types/google.analytics": "^0.0.39",
+    "typescript": "^2.8.4"
+  }
+}
