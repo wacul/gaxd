@@ -1,5 +1,8 @@
 module.exports = {
-  entry: "./src/index.ts",
+  entry: {
+    "gaxd.source": "./src/source.ts",
+    "gaxd.destination": "./src/destination.ts"
+  },
   module: {
     rules: [
       {
