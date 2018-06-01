@@ -1,11 +1,13 @@
-interface IframeSourceParams {
+import {expose} from "./expose";
+
+export interface IframeSourceParams {
   element?: HTMLIFrameElement;
   selector?: string;
   trackingName?: string;
   destinationOrigin : string;
 }
 
-interface RedirectSourceParams {
+export interface RedirectSourceParams {
   origins : string[];
   trackingName?: string;
   openOptions?: {
@@ -73,7 +75,7 @@ async function findIframe(selector : string, timeout = 5000) {
   throw new Error("no iframe");
 }
 
-async function iframe(params : IframeSourceParams) {
+export async function iframe(params : IframeSourceParams) {
   let element : HTMLIFrameElement | undefined;
   if (params.element instanceof HTMLIFrameElement) {
     element = params.element;
@@ -100,7 +102,7 @@ function getTargetOrigin(element : HTMLAnchorElement, origins : string[]) {
     }
   }
 
-async function redirect(params : RedirectSourceParams) {
+export async function redirect(params : RedirectSourceParams) {
   const clientId = await getClientId(params.trackingName);
 
   document.addEventListener("click", ev => {
@@ -116,10 +118,7 @@ async function redirect(params : RedirectSourceParams) {
       : window.open(element.href);
     sendClientId(w as Window, clientId, targetOrigin);
   });
-};
-(window as any).gaxd = {
-  source: {
-    iframe,
-    redirect
-  }
-};
+}
+
+expose("gaxd.source.iframe", iframe);
+expose("gaxd.source.redirect", redirect);

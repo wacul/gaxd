@@ -1,8 +1,10 @@
 module.exports = {
   entry: {
-    "gaxd.source": "./src/source.ts",
-    "gaxd.destination": "./src/destination.ts"
+    "source": "./src/source.ts",
+    "destination": "./src/destination.ts",
+    "gaxd": "./src/index.ts"
   },
+  // outDir: "dist_browser",
   module: {
     rules: [
       {

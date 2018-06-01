@@ -1,3 +1,5 @@
+import {expose} from "./expose";
+
 export interface destinationParams {
   trackingId : string;
   sourceOrigin : string;
@@ -44,7 +46,6 @@ export function destination(params : destinationParams) {
     }
     window.addEventListener("message", recieve);
   });
-};
-(window as any).gaxd = {
-  destination
-};
+}
+
+expose("gaxd.destination", destination);
